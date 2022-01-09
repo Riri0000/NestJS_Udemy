@@ -1,4 +1,5 @@
 /fetchjson/node_modules
 /maps/.cache
 /scratch/node_modules
+/di/node_modules
 .env
