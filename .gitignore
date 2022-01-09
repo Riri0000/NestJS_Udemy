@@ -3,4 +3,5 @@
 /scratch/node_modules
 /di/node_modules
 /di/dist
+/my-car-value/node_modules
 .env
