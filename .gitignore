@@ -2,4 +2,5 @@
 /maps/.cache
 /scratch/node_modules
 /di/node_modules
+/di/dist
 .env
