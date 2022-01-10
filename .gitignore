@@ -4,4 +4,5 @@
 /di/node_modules
 /di/dist
 /my-car-value/node_modules
+/my-car-value/dist
 .env
