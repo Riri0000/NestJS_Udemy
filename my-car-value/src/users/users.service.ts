@@ -18,7 +18,7 @@ export class UsersService {
 
   // Run a query, returing the first record matching the search criteria.
   findOne(id: number) {
-    return this.repo.findOne({ email: 'asdf@asdf.com' });
+    return this.repo.findOne({ email: 'sample@example.com' });
   }
 
   // Runs a query and returns a list of entities.
