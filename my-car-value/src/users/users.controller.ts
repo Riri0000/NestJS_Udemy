@@ -4,6 +4,7 @@ import {
   Post,
   Get,
   Patch,
+  Delete,
   Param,
   Query,
 } from '@nestjs/common';
@@ -12,21 +13,26 @@ import { UsersService } from './users.service';
 
 @Controller('auth')
 export class UsersController {
-  constructor(private userService: UsersService) {}
+  constructor(private usersService: UsersService) {}
 
   @Post('/signup')
   createUser(@Body() body: CreateUserDto) {
-    this.userService.create(body.email, body.password);
+    this.usersService.create(body.email, body.password);
   }
 
   // idはnumberにみえるけどstring。numberにparseする必要がある
   @Get('/:id')
   findUser(@Param('id') id: string) {
-    return this.userService.findOne(parseInt(id));
+    return this.usersService.findOne(parseInt(id));
   }
 
   @Get()
   findAllUsers(@Query('email') email: string) {
-    return this.userService.find(email);
+    return this.usersService.find(email);
+  }
+
+  @Delete('/:id')
+  removeUser(@Param('id') id: string) {
+    return this.usersService.remove(parseInt(id));
   }
 }
