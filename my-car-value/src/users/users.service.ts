@@ -15,4 +15,33 @@ export class UsersService {
     // save to DB
     return this.repo.save(user);
   }
+
+  // Run a query, returing the first record matching the search criteria.
+  findOne(id: number) {
+    return this.repo.findOne({ email: 'asdf@asdf.com' });
+  }
+
+  // Runs a query and returns a list of entities.
+  find(email: string) {
+    return this.repo.find({ email });
+  }
+
+  // Updateするattributeはemailだけかもしれないし、passwordかもしれないのでPartialを使う
+  async update(id: number, attrs: Partial<User>) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('user not found');
+    }
+    Object.assign(user, attrs);
+    return this.repo.save(user);
+  }
+
+  // Remove a record from the DB
+  async remove(id: number) {
+    const user = await this.findOne(id);
+    if (!user) {
+      throw new Error('user not found');
+    }
+    return this.repo.remove(user);
+  }
 }
