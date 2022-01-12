@@ -9,7 +9,12 @@ import { map } from 'rxjs';
 import { plainToClass } from 'class-transformer';
 import { UserDto } from 'src/users/dtos/user.dto';
 
-export function Serialize(dto: any) {
+// any class
+interface ClassConstructor {
+  new (...args: any[]): {};
+}
+
+export function Serialize(dto: ClassConstructor) {
   return UseInterceptors(new SerializeInterceptor(dto));
 }
 
