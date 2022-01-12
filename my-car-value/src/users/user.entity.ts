@@ -6,7 +6,6 @@ import {
   PrimaryGeneratedColumn,
   AfterUpdate,
 } from 'typeorm';
-import { Exclude } from 'class-transformer';
 
 // Create an entity file, and create a class in it that lists all the properties that your entity will have.
 @Entity()
@@ -18,7 +17,6 @@ export class User {
   email: string;
 
   @Column()
-  @Exclude()
   password: string;
 
   @AfterInsert()
