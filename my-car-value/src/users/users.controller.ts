@@ -29,6 +29,11 @@ export class UsersController {
     return this.authaservice.signup(body.email, body.password)
   }
 
+  @Post('/signin')
+  signin(@Body() body: CreateUserDto) {
+    return this.authaservice.signin(body.email, body.password)
+  }
+
   // idはnumberにみえるけどstring。numberにparseする必要がある
   // @UseInterceptors(new SerializeInterceptor(UserDto))
   @Get('/:id')
