@@ -5,9 +5,7 @@ import { User } from './user.entity';
 
 @Injectable()
 export class UsersService {
-  constructor(@InjectRepository(User) private repo: Repository<User>) {
-    this.repo = repo;
-  }
+  constructor(@InjectRepository(User) private repo: Repository<User>) {}
   // create entity instance
   create(email: string, password: string) {
     const user = this.repo.create({ email, password });
@@ -18,7 +16,7 @@ export class UsersService {
 
   // Run a query, returing the first record matching the search criteria.
   findOne(id: number) {
-    return this.repo.findOne({ email: 'sample@example.com' });
+    return this.repo.findOne(id);
   }
 
   // Runs a query and returns a list of entities.
@@ -30,7 +28,7 @@ export class UsersService {
   async update(id: number, attrs: Partial<User>) {
     const user = await this.findOne(id);
     if (!user) {
-      throw new Error('user not found');
+      throw new NotFoundException('user not found');
     }
     Object.assign(user, attrs);
     return this.repo.save(user);
