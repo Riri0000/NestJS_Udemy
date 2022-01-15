@@ -16,6 +16,9 @@ export class UsersService {
 
   // Run a query, returing the first record matching the search criteria.
   findOne(id: number) {
+    if (!id) {
+      return null;
+    }
     return this.repo.findOne(id);
   }
 
