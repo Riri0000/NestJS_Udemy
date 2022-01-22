@@ -56,4 +56,25 @@ describe('AuthService', () => {
       'email in use',
     );
   });
+
+  it('throws if an ivalid password is provided', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([{ email: 'asdf@asdf.com', password: 'lsasdf' } as User]);
+    await expect(service.signin('asdf@asdf.com', 'asdf')).rejects.toThrow(
+      'bad password',
+    );
+  });
+
+  it('returns a user if correct password is provided', async () => {
+    fakeUsersService.find = () =>
+      Promise.resolve([
+        {
+          email: 'asdf@asdf.com',
+          password:
+            '4b874320043bd49a.dfef2eb8c7003bb62dd957d7a93198fcb5e6bad739189e319e7729ecfbcb0f62',
+        } as User,
+      ]);
+    const user = await service.signin('asdf@asdf.com', 'mypassword');
+    expect(user).toBeDefined();
+  });
 });
